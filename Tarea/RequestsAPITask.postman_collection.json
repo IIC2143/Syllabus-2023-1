@@ -1,0 +1,647 @@
+{
+	"info": {
+		"_postman_id": "d44b4a3c-ba96-41cb-a9d0-96cb3cac930a",
+		"name": "RequestsAPITask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26130634"
+	},
+	"item": [
+		{
+			"name": "destroy all persons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Destroy all information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.empty;",
+							"",
+							"    pm.collectionVariables.unset(\"firstID\");",
+							"    pm.collectionVariables.unset(\"secondID\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "creating person 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"First person created\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"Javier Fernandez\");",
+							"    pm.collectionVariables.set(\"firstID\", jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"person\":\n    {\n        \"name\": \"Javier Fernandez\"\n    }\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "creating person 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Second person created\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"Laura Alcocer\");",
+							"    pm.collectionVariables.set(\"secondID\", jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"person\":\n    {\n        \"name\": \"Laura Alcocer\"\n    }\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show all persons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Show three persons\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Javier Fernandez\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[0].id).to.eql(expectedId);",
+							"    pm.expect(jsonData[1].name).to.eql(\"Laura Alcocer\");",
+							"    var expectedId = pm.collectionVariables.get(\"secondID\");",
+							"    pm.expect(jsonData[1].id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show person 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Show first person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"Javier Fernandez\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData.id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons/{{firstID}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{firstID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show person 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Show second person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"Laura Alcocer\");",
+							"    var expectedId = pm.collectionVariables.get(\"secondID\");",
+							"    pm.expect(jsonData.id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons/{{secondID}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{secondID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create vaccine 1 for person 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"First vaccine for first person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[0].vaccine_date).to.eql(\"2022-01-20\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[0].person_id).to.eql(expectedId);",
+							"",
+							"    pm.collectionVariables.set(\"firstVaccineID\", jsonData[0].id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vaccine\":\n    {\n        \"vaccine_type\": \"SINOVAC\",\n        \"vaccine_date\": \"20/01/2022\"\n    }\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/persons/{{firstID}}/vaccines",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{firstID}}",
+						"vaccines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create vaccine 2 for person 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Second vaccine for first person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[0].vaccine_date).to.eql(\"2022-01-20\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[0].person_id).to.eql(expectedId);",
+							"    pm.expect(jsonData[1].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[1].vaccine_date).to.eql(\"2022-07-20\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[1].person_id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vaccine\":\n    {\n        \"vaccine_type\": \"SINOVAC\",\n        \"vaccine_date\": \"20/07/2022\"\n    }\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/persons/{{firstID}}/vaccines",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{firstID}}",
+						"vaccines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create vaccine 1 for person 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"First vaccine for second person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].vaccine_type).to.eql(\"Pfizer\");",
+							"    pm.expect(jsonData[0].vaccine_date).to.eql(\"2022-05-09\");",
+							"    var expectedId = pm.collectionVariables.get(\"secondID\");",
+							"    pm.expect(jsonData[0].person_id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vaccine\":\n    {\n        \"vaccine_type\": \"Pfizer\",\n        \"vaccine_date\": \"09/05/2022\"\n    }\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/persons/{{secondID}}/vaccines",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{secondID}}",
+						"vaccines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show vaccines for person 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Show vaccines for first person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[0].vaccine_date).to.eql(\"2022-01-20\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[0].person_id).to.eql(expectedId);",
+							"    pm.expect(jsonData[1].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[1].vaccine_date).to.eql(\"2022-07-20\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[1].person_id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons/{{firstID}}/vaccines",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{firstID}}",
+						"vaccines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show vaccines for person 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Show vaccines for second person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].vaccine_type).to.eql(\"Pfizer\");",
+							"    pm.expect(jsonData[0].vaccine_date).to.eql(\"2022-05-09\");",
+							"    var expectedId = pm.collectionVariables.get(\"secondID\");",
+							"    pm.expect(jsonData[0].person_id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons/{{secondID}}/vaccines",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{secondID}}",
+						"vaccines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update date of vaccine 1 for person 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Updated date of first vaccine for first person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[0].vaccine_date).to.eql(\"2022-01-01\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[0].person_id).to.eql(expectedId);",
+							"    pm.expect(jsonData[1].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[1].vaccine_date).to.eql(\"2022-07-20\");",
+							"    pm.expect(jsonData[1].person_id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vaccine\":\n    {\n        \"vaccine_date\": \"01/01/2022\"\n    }\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/persons/{{firstID}}/vaccines/{{firstVaccineID}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{firstID}}",
+						"vaccines",
+						"{{firstVaccineID}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update date of vaccine 1 for person 1 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Delete first vaccine for first person\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].vaccine_type).to.eql(\"SINOVAC\");",
+							"    pm.expect(jsonData[0].vaccine_date).to.eql(\"2022-07-20\");",
+							"    var expectedId = pm.collectionVariables.get(\"firstID\");",
+							"    pm.expect(jsonData[0].person_id).to.eql(expectedId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/persons/{{firstID}}/vaccines/{{firstVaccineID}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"{{firstID}}",
+						"vaccines",
+						"{{firstVaccineID}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "firstVaccineID",
+			"value": ""
+		},
+		{
+			"key": "firstID",
+			"value": ""
+		},
+		{
+			"key": "secondID",
+			"value": ""
+		},
+		{
+			"key": "thirdID",
+			"value": ""
+		}
+	]
+}
