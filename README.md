@@ -18,7 +18,28 @@ Tambien contamos con un repositorio dedicado a lo que es el _SetUp_ del curso, e
 
 ### Ayudantes
 
-_Soon_
+
+| Nombre                      | Email                     | Github                                                               |
+|-----------------------------|---------------------------|----------------------------------------------------------------------|
+| Magdalena Araya             | magdalena.araya@uc.cl     | [@manearaya](https://github.com/manearaya)                           |
+| Nicolás Barria              | nbarriav@uc.cl            | [@nbarriav](https://github.com/nbarriav)                             |
+| Francisca Cares             | fccares@uc.cl             | [@franciscares](https://github.com/franciscares)                     |
+| Andrés Castillo             | acastio@uc.cl             | [@acastill20](https://github.com/acastill20)                         |
+| Jorge De Goyeneche          | jorgedg611@uc.cl          | [@jorgedg6](https://github.com/jorgedg6)                             |
+| Juan Fernandez              | jfernaandez@uc.cl         | [@juanfdezg](https://github.com/juanfdezg)                           |
+| Trinidad Gil                | mtgil@uc.cl               | [@mtgil2](https://github.com/mtgil2)                                 |
+| Victoria Jimenez            | victoria.jimenez@uc.cl    | [@vjimenezs](https://github.com/vjimenezs)                           |
+| Diego Milla                 | diego.milla@uc.cl         | [@DiegoMillaUC](https://github.com/DiegoMillaUC)                     |
+| Felipe Muñoz                | felipe.munoz.moraga@uc.cl | [@FelipeMunozMoraga](https://github.com/FelipeMunozMoraga)           |
+| Nicolas Olmos               | nicolas.olmos@uc.cl       | [@NicolasOlmosQuiroga](https://github.com/NicolasOlmosQuiroga)       |
+| Benito Palacios             | benitopalaciosm@uc.cl     | [@benitopalaciosm](https://github.com/benitopalaciosm)               |
+| Cristobal Perez-Cotapos     | cprezcotapos@uc.cl        | [@CristobalPerez-Cotapos](https://github.com/CristobalPerez-Cotapos) |
+| Ignacio Quera               | ignacio.quera@uc.cl       | [@ignacio-quera](https://github.com/ignacio-quera)                   |
+| Vicente Thomas              | vicente.thomas@uc.cl      | [@vicentethomas](https://github.com/vicentethomas)                   |
+| Maximiliano Torres          | maximiliano.torres@uc.cl  | [@Maxi1805](https://github.com/Maxi1805)                             |
+| Gustavo Truan               | gtruan@uc.cl              | [@Gtruaan](https://github.com/Gtruaan)                               |
+| José Tomás Valdivia         | jtvaldivia@uc.cl          | [@jtvaldivia](https://github.com/jtvaldivia)                         |
+
 
 ## Foro
 
